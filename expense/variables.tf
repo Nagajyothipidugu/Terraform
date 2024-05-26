@@ -1,7 +1,8 @@
-# 1. command line
-# 2. tfvars
-# 3. Envi variable 
-# 4. variable default value
+#ec2 variables
+variable "instance_names" {
+    type = list 
+    default = ["db","backend","frontend"] 
+}
  
 variable "image_id" {
   type        = string
@@ -15,17 +16,18 @@ variable  "instance_type" {
     default = "t3.micro" 
 }
 
-variable "tags" {
+variable "common_tags" {
 
     default = { 
 
         project = "Expense" 
         Environment = "Dev" 
-        Module = "Db" 
-        Name = "DB"
+        Terraform="True"
+       
     }
 }
 
+#sg variables
 variable  "sg_name"  {
     default = "allow-ssh"
 }
@@ -45,6 +47,17 @@ variable "allowed_cidr" {
     type = list(string)
     default = ["0.0.0.0/0"]
 
+}
+
+#r53 variables 
+
+variable "zone_id" {
+
+    default ="Z07065651AICZQCZFF3CV"
+}
+
+variable "domain_name" {
+    default = "devaws46.online"
 }
 
 
